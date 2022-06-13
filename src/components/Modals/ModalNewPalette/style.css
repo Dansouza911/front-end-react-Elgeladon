@@ -1,0 +1,12 @@
+.modal-container > div {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.4rem;
+    padding-inline: 0.4rem;
+    background-color: #50c5ee;
+  }
+  
+  .modal-container > input {
+    margin-bottom: 0.5rem;
+  }
+

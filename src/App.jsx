@@ -1,18 +1,32 @@
 import "./App.css";
-import Home from "./components/Home";
-import Header from "./components/Header";
-import { Toaster } from "react-hot-toast";
 import Footer from "./components/Footer";
+import Header from "./components/Header";
+import Home from "./components/Home";
+import { Toaster } from "react-hot-toast";
+import { useState, useEffect } from "react";
+import api from "./api";
 
-function App() {
+const App = () => {
+  const [palettes, setPalettes] = useState([]);
+
+  const getPalettes = async () => {
+    const response = await api.get("/paletas/todas-paletas");
+
+    setPalettes(response.data);
+  };
+
+  useEffect(() => {
+    getPalettes();
+  }, []);
+
   return (
     <>
-      <Toaster />
-      <Header />
-      <Home />
+      <Toaster position="bottom-center" />
+      <Header getPalettes={getPalettes} />
+      <Home palettes={palettes} getPalettes={getPalettes} />
       <Footer />
     </>
   );
-}
+};
 
 export default App;
